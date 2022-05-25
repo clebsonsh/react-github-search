@@ -9,7 +9,11 @@ const Home = () => {
   const handlePesquisa = () => {
     axios
       .get(`https://api.github.com/users/${usuario}/repos`)
-      .then(({ data }) => console.log(data));
+      .then(({ data }) => {
+        const reposNames = data.map((repo) => repo.name);
+
+        localStorage.setItem('reposNames', JSON.stringify(reposNames))      
+      });
   };
   return (
     <S.Container>
