@@ -4,10 +4,10 @@ import Repositories from "./Repositories";
 import Home from "./Home";
 
 const AppRoutes = () => (
-  <BrowserRouter basename={process.env.PUBLIC_URL}>
+  <BrowserRouter>
     <Routes>
-      <Route index element={<Home />} />
-      <Route path="repositories" element={<Repositories />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/repositories" element={<Repositories />} />
     </Routes>
   </BrowserRouter>
 );
