@@ -1,18 +1,24 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import * as S from "./styled";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [usuario, setUsuario] = useState("");
 
   const handlePesquisa = () => {
     axios
       .get(`https://api.github.com/users/${usuario}/repos`)
       .then(({ data }) => {
-        const reposNames = data.map((repo) => repo.name);
+        const reposNames = data.map((repo) => {
+          const { id, name } = repo;
+          return { id, name };
+        });
 
-        localStorage.setItem('reposNames', JSON.stringify(reposNames))      
+        localStorage.setItem("reposNames", JSON.stringify(reposNames));
+        navigate("repositories");
       });
   };
   return (
