@@ -17,6 +17,7 @@ const Repositories = () => {
           <S.ListItem key={repo.id}>Repositório: {repo.name} </S.ListItem>
         ))}
       </S.List>
+      <S.LinkHome to="/">Voltar</S.LinkHome>
     </S.Container>
   );
 };
