@@ -1,8 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 
+import * as S from "./styled";
+
 const Home = () => {
-  const [usuario, setUsuario] = useState("clebsonsh");
+  const [usuario, setUsuario] = useState("");
 
   const handlePesquisa = () => {
     axios
@@ -10,18 +12,18 @@ const Home = () => {
       .then(({ data }) => console.log(data));
   };
   return (
-    <>
-      <input
+    <S.Container>
+      <S.Input
         value={usuario}
         onChange={(e) => setUsuario(e.target.value)}
         className="usuarioInput"
         type="text"
         placeholder="Usuário"
       />
-      <button type="button" onClick={handlePesquisa}>
+      <S.Button type="button" onClick={handlePesquisa}>
         Pesquisar
-      </button>
-    </>
+      </S.Button>
+    </S.Container>
   );
 };
 

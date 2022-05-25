@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Repositories from "./Repositories";
-import Home from "./Home";
+import Repositories from "./pages/Repositories";
+import Home from "./pages/Home";
 
 const AppRoutes = () => (
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/repositories" element={<Repositories />} />
+      <Route index element={<Home />} />
+      <Route path="repositories" element={<Repositories />} />
     </Routes>
   </BrowserRouter>
 );
