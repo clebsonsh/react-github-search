@@ -4,7 +4,7 @@ import Repositories from "./Repositories";
 import Home from "./Home";
 
 const AppRoutes = () => (
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Routes>
       <Route index element={<Home />} />
       <Route path="repositories" element={<Repositories />} />
