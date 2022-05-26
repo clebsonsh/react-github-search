@@ -7,6 +7,7 @@ import * as S from "./styled";
 const Home = () => {
   const navigate = useNavigate();
   const [usuario, setUsuario] = useState("");
+  const [error, setError] = useState(false);
 
   const handlePesquisa = () => {
     axios
@@ -18,22 +19,27 @@ const Home = () => {
         });
 
         localStorage.setItem("reposNames", JSON.stringify(reposNames));
+        setError(false);
         navigate("repositories");
-      });
+      })
+      .catch((error) => setError(true));
   };
   return (
-    <S.Container>
-      <S.Input
-        value={usuario}
-        onChange={(e) => setUsuario(e.target.value)}
-        className="usuarioInput"
-        type="text"
-        placeholder="Usuário"
-      />
-      <S.Button type="button" onClick={handlePesquisa}>
-        Pesquisar
-      </S.Button>
-    </S.Container>
+    <S.HomeContainer>
+      <S.Content>
+        <S.Input
+          value={usuario}
+          onChange={(e) => setUsuario(e.target.value)}
+          className="usuarioInput"
+          type="text"
+          placeholder="Usuário"
+        />
+        <S.Button type="button" onClick={handlePesquisa}>
+          Pesquisar
+        </S.Button>
+      </S.Content>
+      {error && <S.ErrorMsg>Ocorreu um erro. Tente novamente</S.ErrorMsg>}
+    </S.HomeContainer>
   );
 };
 
